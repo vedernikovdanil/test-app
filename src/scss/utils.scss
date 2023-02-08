@@ -1,0 +1,96 @@
+@use "./variables.scss" as *;
+
+/* ===display=== */
+@each $value in (block, flex, grid) {
+  .d-#{$value} {
+    display: $value;
+  }
+  .d-inline-#{$value} {
+    display: inline-#{$value};
+  }
+}
+
+/* ===flex=== */
+.flex {
+  &-column {
+    flex-direction: column;
+  }
+  &-wrap {
+    flex-wrap: wrap;
+  }
+  &-column-reverse {
+    flex-direction: column-reverse;
+  }
+  &-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+}
+
+/* ===gap=== */
+@each $space_class, $space in $spacers {
+  .gap-#{$space_class} {
+    gap: $space;
+  }
+}
+
+/* ===width/height=== */
+@each $class, $prop in (w: width, h: height) {
+  .#{$class}-fit {
+    #{$prop}: fit-content;
+  }
+  @each $space_class, $space in $percents {
+    .#{$class}-#{$space_class} {
+      #{$prop}: $space;
+    }
+  }
+}
+
+/* ===margin/padding=== */
+$_auto: (
+  auto: auto,
+);
+@each $space_class, $space in map-merge($spacers, $_auto) {
+  @each $class, $prop in (m: margin, p: padding) {
+    .#{$class} {
+      &-#{$space_class} {
+        #{$prop}: $space;
+      }
+      @each $side_class, $side in (l: left, r: right, t: top, b: bottom) {
+        &#{$side_class}-#{$space_class} {
+          #{$prop}-#{$side}: $space;
+        }
+      }
+      &x-#{$space_class} {
+        #{$prop}-left: $space;
+        #{$prop}-right: $space;
+      }
+      &y-#{$space_class} {
+        #{$prop}-top: $space;
+        #{$prop}-bottom: $space;
+      }
+    }
+  }
+}
+
+/* ===text/bg=== */
+@each $class, $prop in (text: color, bg: background-color) {
+  @each $color_class, $color in $variants {
+    .#{$class}-#{$color_class} {
+      #{$prop}: $color;
+    }
+  }
+}
+
+.collapsing {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+.container {
+  @extend .px-5;
+  @extend .m-auto;
+  @media (min-width: 1200px) {
+    max-width: 1200px;
+  }
+}

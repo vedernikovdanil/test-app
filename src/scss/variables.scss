@@ -1,0 +1,47 @@
+@use "sass:color";
+@use "sass:map";
+
+$bg-clr: white;
+$text-clr: hsl(0deg 0% 5%);
+$link-clr: hsl(210deg 100% 50%);
+$light-clr: rgb(255 255 255 / 55%);
+
+$primary: hsl(210deg 75% 50%);
+$secondary: color.change($primary, $saturation: 0%);
+$success: color.change($primary, $hue: 110);
+$danger: color.change($primary, $hue: 10);
+$warning: color.change($primary, $hue: 50);
+
+$variants: (
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  danger: $danger,
+  warning: $warning,
+);
+
+$spacers: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem,
+);
+
+$percents: (
+  0: 0%,
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%,
+);
+
+$breakpoints: (
+  xs: 0.02px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400x,
+);

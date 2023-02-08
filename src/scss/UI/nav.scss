@@ -1,0 +1,104 @@
+@use "sass:color";
+@use "../variables.scss" as *;
+@use "../funtions.scss" as *;
+
+/* ===nav=== */
+.nav {
+  &-link,
+  &-logo {
+    $link-clr: hsl(0 0% 90%);
+    color: $link-clr;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    &.active,
+    &:hover {
+      color: white;
+    }
+    &[aria-disabled="true"] {
+      cursor: not-allowed;
+      color: color.scale($link-clr, $lightness: -10%);
+      &:active {
+        pointer-events: none;
+      }
+    }
+  }
+  &-logo {
+    font-size: 1.5rem;
+  }
+  &-list {
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+  }
+  &-collapse {
+    flex-basis: auto;
+    flex-grow: 1;
+  }
+  &-toggler {
+    @include shadowed_focus();
+    display: none;
+    border-radius: 0.75rem;
+    background: transparent;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid $light_clr;
+    cursor: pointer;
+    &::before {
+      content: "";
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.navbar {
+  background-color: $primary;
+  width: 100%;
+  padding: 0.5rem 0;
+  &-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    padding-right: 1rem;
+  }
+}
+
+/* ===navbar-bp=== */
+@include media_breakpoints(navbar) {
+  .nav-toggler {
+    display: block;
+  }
+  .nav-collapse {
+    flex-basis: 100%;
+    &.collapse:not(.show) {
+      display: none;
+    }
+    .nav-link {
+      display: block;
+      padding: 0.25rem;
+      border-radius: 0.25rem;
+      background-color: color.scale($primary, $lightness: +10%);
+      &:hover {
+        background-color: color.scale($primary, $lightness: +20%);
+      }
+    }
+    .nav-list {
+      flex-direction: column;
+      margin-bottom: 1rem;
+      color: $light-clr;
+    }
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      margin: 1rem 0;
+      background-color: $light-clr;
+    }
+  }
+}

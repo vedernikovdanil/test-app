@@ -1,0 +1,28 @@
+@use "sass:color";
+@use "../variables.scss" as *;
+@use "../funtions.scss" as *;
+
+@mixin variant($name, $color) {
+  &-#{$name} {
+    background-color: $color;
+    @include shadowed_focus($color);
+    &:hover {
+      background-color: color.scale($color, $lightness: +10%);
+    }
+    &:active {
+      background-color: color.scale($color, $lightness: -10%);
+    }
+  }
+}
+
+/* ===btn=== */
+.btn {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+  @each $name, $color in $variants {
+    @include variant($name, $color);
+  }
+}

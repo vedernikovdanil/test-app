@@ -1,0 +1,20 @@
+@use "sass:color";
+@use "sass:map";
+@use "./variables.scss" as *;
+
+@mixin shadowed_focus($clr: $light_clr) {
+  transition: all 0.25s ease;
+  &:focus {
+    box-shadow: 0 0 0 5px color.scale($clr, $alpha: -50%);
+  }
+}
+
+@mixin media_breakpoints($class) {
+  @each $bp_key, $bp in $breakpoints {
+    @media (max-width: calc($bp - 0.02px)) {
+      .#{$class}-#{$bp-key} {
+        @content;
+      }
+    }
+  }
+}
