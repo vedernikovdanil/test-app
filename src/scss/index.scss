@@ -1,7 +1,7 @@
 @forward "./utils.scss";
 @forward "./UI/btn.scss";
 @forward "./UI/nav.scss";
-@forward "./UI/navbar.scss";
+@forward "./UI/navbar/index.scss";
 @use "sass:list";
 @use "./variables.scss" as *;
 
@@ -26,3 +26,5 @@ body {
 a {
   color: var(--link-clr);
 }
+
+@debug SCSS compiled successfully;

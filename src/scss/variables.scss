@@ -2,17 +2,29 @@
 @use "sass:map";
 @use "./funtions.scss" as *;
 
-:root {
-  --bg-clr: white;
-  --text-clr: black;
-  @include hsl_init(--link-clr, 210deg, 100%, 55%);
-  @include hsl_init(--light-clr, 0deg, 0%, 55%, 55%);
+$primary: lch_create(
+  $l: 65%,
+  $c: 50%,
+  $h: 255deg,
+);
 
-  @include hsl_init(--primary, 210deg, 75%, 50%);
-  @include hsl_from(--secondary, --primary, $s: 0%);
-  @include hsl_from(--success, --primary, $h: 110deg);
-  @include hsl_from(--danger, --primary, $h: 10deg);
-  @include hsl_from(--warning, --primary, $h: 50deg);
+:root {
+  @include print_title("ui");
+  @include lch_ui_from(--bg-clr, $primary, $l: 100%, $c: 0%);
+  @include lch_ui_from(--text-clr, $primary, $l: 0%, $c: 0%);
+  @include lch_ui_from(--light-clr, $primary, $c: 0%);
+  @include lch_ui_init(--link-clr, $l: 55%, $c: 75%, $h: 240deg);
+
+  @include print_title("variants");
+  @include lch_ui_init(--primary, $primary...);
+  @include lch_ui_from(--secondary, $primary, $c: 0%);
+  @include lch_ui_from(--success, $primary, $h: 140deg);
+  @include lch_ui_from(--danger, $primary, $h: 30deg);
+  @include lch_ui_from(--warning, $primary, $h: 85deg, $l: 85%);
+
+  @include print_title("nav");
+  @include lch_ui_init(--nav-link, $l: 33%, $c: 0%, $h: 0deg);
+  @include lch_ui_init(--nav-collapse-tab, $l: 75%, $c: 0%, $h: 0deg, $a: 50%);
 }
 
 $variants_vars: (

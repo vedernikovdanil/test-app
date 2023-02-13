@@ -9,7 +9,7 @@
     text-decoration: none;
     padding: 1rem 0.25rem;
     &[aria-disabled="true"] {
-      color: hsl-scale(--link-clr, $l: +10%);
+      color: var(--link-clr-light);
       cursor: not-allowed;
       &:active {
         pointer-events: none;

@@ -5,12 +5,15 @@
 @mixin variant($name, $color_var) {
   &-#{$name} {
     background-color: var($color_var);
-    @include shadowed_focus($color_var);
+    @if ($color_var == --warning) {
+      color: black;
+    }
+    @include shadowed_focus(#{$color_var}-half);
     &:hover {
-      background-color: hsl_scale($color_var, $l: +10%);
+      background-color: var(#{$color_var}-light);
     }
     &:active {
-      background-color: hsl_scale($color_var, $l: -10%);
+      background-color: var(#{$color_var}-dark);
     }
   }
 }

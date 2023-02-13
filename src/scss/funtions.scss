@@ -1,72 +1,68 @@
 @use "sass:color";
 @use "sass:map";
 
-@mixin hsl_init($name, $h, $s, $l, $a: 100%) {
-  #{$name}-h: $h;
-  #{$name}-s: $s;
-  #{$name}-l: $l;
-  #{$name}-a: $a;
-  $h: var(#{$name}-h);
-  $s: var(#{$name}-s);
-  $l: var(#{$name}-l);
-  $a: var(#{$name}-a);
-  #{$name}: hsl($h, $s, $l, $a);
+@function lch_create($l, $c, $h, $a: 100%) {
+  @return (l: $l, c: $c, h: $h, a: $a);
 }
 
-@mixin hsl_from(
+@mixin lch_init($name, $l, $c, $h, $a: 1) {
+  #{$name}: oklch(#{$l} #{$c} #{$h} / #{$a});
+}
+
+@mixin lch_from(
   $name,
-  $from,
-  $h: var(#{$from}-h),
-  $s: var(#{$from}-s),
-  $l: var(#{$from}-l),
-  $a: var(#{$from}-a)
+  $from_lch,
+  $l: map-get($from_lch, $l),
+  $c: map-get($from_lch, $c),
+  $h: map-get($from_lch, $h),
+  $a: map-get($from_lch, $a)
 ) {
-  @include hsl_init($name, $h, $s, $l, $a);
+  @include lch_init($name, $l, $c, $h, $a);
 }
 
-@mixin hsl_change($from, $h: false, $s: false, $l: false, $a: false) {
-  @if ($h) {
-    #{$from}-h: $h;
-  }
-  @if ($s) {
-    #{$from}-s: $s;
-  }
-  @if ($l) {
-    #{$from}-l: $l;
-  }
-  @if ($a) {
-    #{$from}-a: $a;
-  }
-  $h: var(#{$from}-h);
-  $s: var(#{$from}-s);
-  $l: var(#{$from}-l);
-  $a: var(#{$from}-a);
-  #{$from}: hsl($h, $s, $l, $a);
+@mixin lch_scale($name, $from_lcha, $l: 0, $c: 0, $h: 0, $a: 0) {
+  $l: map-get($from_lcha, l) + $l;
+  $c: map-get($from_lcha, c) + $c;
+  $h: map-get($from_lcha, h) + $h;
+  $a: map-get($from_lcha, a) + $a;
+  @include lch_init($name, $l, $c, $h, $a);
 }
 
-@function hsl_scale($from, $h: 0deg, $s: 0%, $l: 0%, $a: 0%) {
-  $isDarkMode: calc(var(--dark-mode, -1) * -1);
-  $h: calc(var(#{$from}-h) + ($h * $isDarkMode));
-  $s: calc(var(#{$from}-s) + ($s * $isDarkMode));
-  $l: calc(var(#{$from}-l) + ($l * $isDarkMode));
-  $a: calc(var(#{$from}-a) + ($a * $isDarkMode));
-  @return hsl($h, $s, $l, $a);
+@mixin lch_ui_init($name, $l, $c, $h, $a: 100%) {
+  /* #{$name} */
+  $lch: lch_create($l, $c, $h, $a);
+  @include lch_init($name, $lch...);
+  @include lch_scale(#{$name}-light, $lch, $l: +5%);
+  @include lch_scale(#{$name}-lighter, $lch, $l: +10%);
+  @include lch_scale(#{$name}-dark, $lch, $l: -5%);
+  @include lch_scale(#{$name}-darker, $lch, $l: -10%);
+  @include lch_scale(#{$name}-half, $lch, $a: -50%);
 }
 
-@function hsl_change(
-  $from,
-  $h: var(#{$from}-h),
-  $s: var(#{$from}-s),
-  $l: var(#{$from}-l),
-  $a: var(#{$from}-a)
+@mixin lch_ui_from(
+  $name,
+  $from_lch,
+  $l: map-get($from_lch, l),
+  $c: map-get($from_lch, c),
+  $h: map-get($from_lch, h),
+  $a: map-get($from_lch, a)
 ) {
-  @return hsl($h, $s, $l, $a);
+  @include lch_ui_init($name, $l, $c, $h, $a);
+}
+
+@mixin ui_replace($from, $to) {
+  #{$from}: var($to);
+  #{$from}-light: var(#{$to}-light);
+  #{$from}-lighter: var(#{$to}-lighter);
+  #{$from}-dark: var(#{$to}-dark);
+  #{$from}-darker: var(#{$to}-darker);
+  #{$from}-half: var(#{$to}-half);
 }
 
 @mixin shadowed_focus($color_var) {
   transition: all 0.25s ease;
   &:focus {
-    box-shadow: 0 0 0 5px hsl_scale($color_var, $a: -50%);
+    box-shadow: 0 0 0 5px var($color_var);
   }
 }
 
@@ -78,4 +74,12 @@
       }
     }
   }
+}
+
+@mixin print_title($title) {
+  /*                 */
+  /*=================*/
+  /*=== #{$title} ===*/
+  /*=================*/
+  /*                 */
 }
