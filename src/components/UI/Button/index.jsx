@@ -3,7 +3,7 @@
  * @param {"primary" | "secondary" | "success" | "danger" | "warning"} props.variant
  */
 function Button({ children, variant = "primary", className, ...props }) {
-  className = `btn btn-${variant}` + (className ? ` ${className}` : "");
+  className = [`btn btn-${variant}`, className].join(" ");
   return (
     <button className={className} {...props}>
       {children}

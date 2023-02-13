@@ -1,23 +1,26 @@
 @use "sass:color";
 @use "sass:map";
+@use "./funtions.scss" as *;
 
-$bg-clr: white;
-$text-clr: hsl(0deg 0% 5%);
-$link-clr: hsl(210deg 100% 50%);
-$light-clr: rgb(255 255 255 / 55%);
+:root {
+  --bg-clr: white;
+  --text-clr: black;
+  @include hsl_init(--link-clr, 210deg, 100%, 55%);
+  @include hsl_init(--light-clr, 0deg, 0%, 55%, 55%);
 
-$primary: hsl(210deg 75% 50%);
-$secondary: color.change($primary, $saturation: 0%);
-$success: color.change($primary, $hue: 110);
-$danger: color.change($primary, $hue: 10);
-$warning: color.change($primary, $hue: 50);
+  @include hsl_init(--primary, 210deg, 75%, 50%);
+  @include hsl_from(--secondary, --primary, $s: 0%);
+  @include hsl_from(--success, --primary, $h: 110deg);
+  @include hsl_from(--danger, --primary, $h: 10deg);
+  @include hsl_from(--warning, --primary, $h: 50deg);
+}
 
-$variants: (
-  primary: $primary,
-  secondary: $secondary,
-  success: $success,
-  danger: $danger,
-  warning: $warning,
+$variants_vars: (
+  primary: --primary,
+  secondary: --secondary,
+  success: --success,
+  danger: --danger,
+  warning: --warning,
 );
 
 $spacers: (

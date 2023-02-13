@@ -2,9 +2,9 @@ function List({ children, className, ...props }) {
   if (!Array.isArray(children)) {
     children = [children];
   }
-  className = "nav-list" + (className ? ` ${className}` : "");
+  props.className = ["nav-list", className].join(" ");
   return (
-    <ul className={className} {...props}>
+    <ul {...props}>
       {[...children].map((item, index) => (
         <li key={index}>{item}</li>
       ))}

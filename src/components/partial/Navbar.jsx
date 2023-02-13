@@ -1,18 +1,18 @@
-import Nav from "../UI/Nav";
+import * as UI from "../UI";
 
 function Navbar() {
   return (
-    <Nav breakpoint="lg" className="container">
-      <Nav.Logo to="/">Logo</Nav.Logo>
-      <Nav.Collapse>
-        <Nav.List>
-          <Nav.Link to="/posts" disabled>
+    <UI.Navbar breakpoint="lg" isDark={false}>
+      <UI.Navbar.Logo to="/">Logo</UI.Navbar.Logo>
+      <UI.Navbar.Collapse>
+        <UI.Nav>
+          <UI.Nav.Link to="/posts" disabled>
             Posts
-          </Nav.Link>
-          <Nav.Link to="/about">About</Nav.Link>
-        </Nav.List>
-      </Nav.Collapse>
-    </Nav>
+          </UI.Nav.Link>
+          <UI.Nav.Link to="/about">About</UI.Nav.Link>
+        </UI.Nav>
+      </UI.Navbar.Collapse>
+    </UI.Navbar>
   );
 }
 

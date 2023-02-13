@@ -1,14 +1,15 @@
 @forward "./utils.scss";
 @forward "./UI/btn.scss";
 @forward "./UI/nav.scss";
+@forward "./UI/navbar.scss";
 @use "sass:list";
 @use "./variables.scss" as *;
 
 /* index.scss */
 
 :root {
-  background-color: $bg-clr;
-  color: $text-clr;
+  background-color: var(--bg-clr);
+  color: var(--text-clr);
 }
 
 html,
@@ -23,5 +24,5 @@ body {
 }
 
 a {
-  color: $link-clr;
+  color: var(--link-clr);
 }

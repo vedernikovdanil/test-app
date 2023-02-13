@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 
 function Link({ children, to, disabled = false, className, ...props }) {
-  className = "nav-link" + (className ? ` ${className}` : "");
+  props.className = ["nav-link", className].join(" ");
   if (disabled) {
     props.tabIndex = -1;
   }
   return (
-    <NavLink aria-disabled={disabled} to={to} className={className} {...props}>
+    <NavLink aria-disabled={disabled} to={to} {...props}>
       {children}
     </NavLink>
   );

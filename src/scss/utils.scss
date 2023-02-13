@@ -74,9 +74,9 @@ $_auto: (
 
 /* ===text/bg=== */
 @each $class, $prop in (text: color, bg: background-color) {
-  @each $color_class, $color in $variants {
+  @each $color_class, $color_var in $variants_vars {
     .#{$class}-#{$color_class} {
-      #{$prop}: $color;
+      #{$prop}: var($color_var);
     }
   }
 }
@@ -88,8 +88,11 @@ $_auto: (
 }
 
 .container {
-  @extend .px-5;
-  @extend .m-auto;
+  padding: 0 3rem;
+  margin: auto;
+  @media (max-width: 565px) {
+    padding: 0 1rem;
+  }
   @media (min-width: 1200px) {
     max-width: 1200px;
   }

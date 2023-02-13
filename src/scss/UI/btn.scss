@@ -2,15 +2,15 @@
 @use "../variables.scss" as *;
 @use "../funtions.scss" as *;
 
-@mixin variant($name, $color) {
+@mixin variant($name, $color_var) {
   &-#{$name} {
-    background-color: $color;
-    @include shadowed_focus($color);
+    background-color: var($color_var);
+    @include shadowed_focus($color_var);
     &:hover {
-      background-color: color.scale($color, $lightness: +10%);
+      background-color: hsl_scale($color_var, $l: +10%);
     }
     &:active {
-      background-color: color.scale($color, $lightness: -10%);
+      background-color: hsl_scale($color_var, $l: -10%);
     }
   }
 }
@@ -22,7 +22,7 @@
   padding: 0.5rem 1rem;
   color: white;
   cursor: pointer;
-  @each $name, $color in $variants {
-    @include variant($name, $color);
+  @each $name, $color_var in $variants_vars {
+    @include variant($name, $color_var);
   }
 }
