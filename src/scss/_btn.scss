@@ -1,0 +1,25 @@
+@use "sass:color";
+@use "./utils.scss" as *;
+@use "./variables.scss" as *;
+@use "./functions.scss" as *;
+
+@mixin variant($name, $color_var) {
+  &-#{$name} {
+    @extend %bg-#{$name};
+    @include clickable($color_var, "background-color");
+    @include shadowed_focus(#{$color_var}-half);
+  }
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+
+  cursor: pointer;
+
+  border: none;
+  border-radius: 0.75rem;
+
+  @each $name, $color in $theme-colors {
+    @include variant($name, --#{$name});
+  }
+}

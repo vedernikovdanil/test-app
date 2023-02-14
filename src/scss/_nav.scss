@@ -1,0 +1,23 @@
+@use "./functions.scss" as *;
+
+.nav {
+  &-list {
+    margin: 0;
+
+    list-style: none;
+  }
+
+  &-link {
+    padding: 1rem 0.25rem;
+
+    text-decoration: none;
+
+    color: var(--link-clr-darker);
+
+    &.active {
+      color: var(--link-clr-lighter);
+    }
+
+    @include palette-replace(--link-clr, --text-clr);
+  }
+}

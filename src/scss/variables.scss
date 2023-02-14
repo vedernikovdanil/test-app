@@ -1,29 +1,34 @@
 @use "sass:color";
 @use "sass:map";
-@use "./funtions.scss" as *;
+@use "./functions.scss" as *;
 
-:root {
-  --bg-clr: white;
-  --text-clr: black;
-  @include hsl_init(--link-clr, 210deg, 100%, 55%);
-  @include hsl_init(--light-clr, 0deg, 0%, 55%, 55%);
-
-  @include hsl_init(--primary, 210deg, 75%, 50%);
-  @include hsl_from(--secondary, --primary, $s: 0%);
-  @include hsl_from(--success, --primary, $h: 110deg);
-  @include hsl_from(--danger, --primary, $h: 10deg);
-  @include hsl_from(--warning, --primary, $h: 50deg);
-}
-
-$variants_vars: (
-  primary: --primary,
-  secondary: --secondary,
-  success: --success,
-  danger: --danger,
-  warning: --warning,
+$primary: lch-create(
+  $l: 65%,
+  $c: 50%,
+  $h: 255deg,
+);
+$theme-colors: (
+  primary: $primary,
+  secondary: lch-from($primary, $c: 0%),
+  success: lch-from($primary, $h: 140deg),
+  danger: lch-from($primary, $h: 30deg),
+  warning: lch-from($primary, $h: 85deg, $l: 85%),
+  dark: lch-create(25%, $mul: -2),
+  light: lch-create(100%, $mul: 1),
 );
 
+:root {
+  @each $name, $color in $theme-colors {
+    @include lch-palette-init(--#{$name}, $color...);
+  }
+
+  @include lch-palette-from(--light-clr, $primary, $c: 0%);
+  @include lch-palette-init(--link-clr, $l: 55%, $c: 50%, $h: 250deg, $mul: 2);
+  @include lch-palette-init(--nav-link-collapse, $l: 10%, $a: 10%, $mul: 5);
+}
+
 $spacers: (
+  auto: auto,
   0: 0,
   1: 0.25rem,
   2: 0.5rem,
@@ -31,7 +36,6 @@ $spacers: (
   4: 1.5rem,
   5: 3rem,
 );
-
 $percents: (
   0: 0%,
   25: 25%,
@@ -39,7 +43,6 @@ $percents: (
   75: 75%,
   100: 100%,
 );
-
 $breakpoints: (
   xs: 0.02px,
   sm: 576px,
