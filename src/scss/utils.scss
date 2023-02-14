@@ -1,99 +1,121 @@
+@use "sass:map";
+@use "./functions.scss" as *;
 @use "./variables.scss" as *;
 
-/* ===display=== */
-@each $value in (block, flex, grid) {
-  .d-#{$value} {
-    display: $value;
-  }
-  .d-inline-#{$value} {
-    display: inline-#{$value};
-  }
-}
-
-/* ===flex=== */
-.flex {
-  &-column {
-    flex-direction: column;
-  }
-  &-wrap {
-    flex-wrap: wrap;
-  }
-  &-column-reverse {
-    flex-direction: column-reverse;
-  }
-  &-wrap-reverse {
-    flex-wrap: wrap-reverse;
-  }
-}
-
-/* ===gap=== */
-@each $space_class, $space in $spacers {
-  .gap-#{$space_class} {
-    gap: $space;
-  }
-}
-
-/* ===width/height=== */
-@each $class, $prop in (w: width, h: height) {
-  .#{$class}-fit {
-    #{$prop}: fit-content;
-  }
-  @each $space_class, $space in $percents {
-    .#{$class}-#{$space_class} {
-      #{$prop}: $space;
+@include describe("display") {
+  @each $value in (block, flex, grid) {
+    .d-#{$value} {
+      display: $value;
+    }
+    .d-inline-#{$value} {
+      display: inline-#{$value};
     }
   }
 }
 
-/* ===margin/padding=== */
-$_auto: (
-  auto: auto,
-);
-@each $space_class, $space in map-merge($spacers, $_auto) {
-  @each $class, $prop in (m: margin, p: padding) {
-    .#{$class} {
-      &-#{$space_class} {
+@include describe("flex") {
+  .flex {
+    &-column {
+      flex-direction: column;
+    }
+
+    &-wrap {
+      flex-wrap: wrap;
+    }
+
+    &-column-reverse {
+      flex-direction: column-reverse;
+    }
+
+    &-wrap-reverse {
+      flex-wrap: wrap-reverse;
+    }
+  }
+}
+
+@include describe("gap") {
+  @each $space_class, $space in $spacers {
+    .gap-#{$space_class} {
+      gap: $space;
+    }
+  }
+}
+
+@include describe("width/height") {
+  @each $class, $prop in (w: width, h: height) {
+    .#{$class}-fit {
+      #{$prop}: fit-content;
+    }
+
+    @each $space_class, $space in $percents {
+      .#{$class}-#{$space_class} {
         #{$prop}: $space;
       }
-      @each $side_class, $side in (l: left, r: right, t: top, b: bottom) {
-        &#{$side_class}-#{$space_class} {
-          #{$prop}-#{$side}: $space;
-        }
-      }
-      &x-#{$space_class} {
-        #{$prop}-left: $space;
-        #{$prop}-right: $space;
-      }
-      &y-#{$space_class} {
-        #{$prop}-top: $space;
-        #{$prop}-bottom: $space;
-      }
     }
   }
 }
 
-/* ===text/bg=== */
-@each $class, $prop in (text: color, bg: background-color) {
-  @each $color_class, $color_var in $variants_vars {
-    .#{$class}-#{$color_class} {
-      #{$prop}: var($color_var);
+@include describe("margin/padding") {
+  @each $space_class, $space in $spacers {
+    @each $class, $prop in (m: margin, p: padding) {
+      .#{$class} {
+        &-#{$space_class} {
+          #{$prop}: $space;
+        }
+
+        &x-#{$space_class} {
+          #{$prop}-left: $space;
+          #{$prop}-right: $space;
+        }
+
+        &y-#{$space_class} {
+          #{$prop}-top: $space;
+          #{$prop}-bottom: $space;
+        }
+
+        @each $side_class, $side in (l: left, r: right, t: top, b: bottom) {
+          &#{$side_class}-#{$space_class} {
+            #{$prop}-#{$side}: $space;
+          }
+        }
+      }
     }
   }
 }
 
 .collapsing {
-  height: 0;
   overflow: hidden;
+
+  height: 0;
+
   transition: height 0.35s ease;
 }
 
 .container {
-  padding: 0 3rem;
   margin: auto;
-  @media (max-width: 565px) {
+  padding: 0 3rem;
+
+  @media (width <= 565px) {
     padding: 0 1rem;
   }
-  @media (min-width: 1200px) {
+
+  @media (width >= 1200px) {
     max-width: 1200px;
   }
+}
+
+@each $class, $prop in (text: color, bg: background-color) {
+  @each $color_name, $color in $theme-colors {
+    %#{$class}-#{$color_name} {
+      $text: if(map.get($color, l) <= 65%, --light, --dark);
+      #{$prop}: var(--#{$color_name});
+
+      @include palette_replace(--text-clr, $text);
+    }
+  }
+}
+
+%dark-theme {
+  @extend %bg-dark;
+  @include lch_palette_init(--nav-link-collapse, $l: 75%, $a: 10%, $mul: -2.5);
 }
