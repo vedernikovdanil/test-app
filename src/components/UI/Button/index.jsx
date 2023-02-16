@@ -1,9 +1,9 @@
 /**
  * @param {Object} props
- * @param {"primary" | "secondary" | "success" | "danger" | "warning"} props.variant
+ * @param {"light" | "dark" | "primary" | "secondary" | "success" | "danger" | "warning"} props.variant
  */
 function Button({ children, variant = "primary", className, ...props }) {
-  className = [`btn btn-${variant}`, className].join(" ");
+  className = [`btn bg-${variant}`, className].join(" ");
   return (
     <button className={className} {...props}>
       {children}
@@ -23,4 +23,6 @@ export default Object.assign(Button, {
   Success: createButton("success"),
   Danger: createButton("danger"),
   Warning: createButton("warning"),
+  Dark: createButton("dark"),
+  Light: createButton("light"),
 });

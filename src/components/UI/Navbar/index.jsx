@@ -4,22 +4,20 @@ import Collapse from "./Collapse";
 /**
  * @param {Object} props
  * @param {"xs" | "sm" | "md" | "lg" | "xl" | "xxl"} props.breakpoint
- * @param {"" | "primary" | "secondary" | "success" | "danger" | "warning"} props.variant
+ * @param {"light" | "dark" | "primary" | "secondary" | "success" | "danger" | "warning"} props.variant
  */
 function Navbar({
   children,
   breakpoint = "xs",
-  variant = "",
-  isDark = false,
+  variant = "light",
   className,
   ...props
 }) {
   props.className = [
     "navbar",
     `navbar-${breakpoint}`,
+    `bg-${variant}`,
     className,
-    isDark && "navbar-dark",
-    variant && `bg-${variant}`,
   ].join(" ");
   return (
     <nav {...props}>

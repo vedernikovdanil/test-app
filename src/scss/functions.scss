@@ -50,7 +50,7 @@
   @include lch-scale(#{$name}-lighter, $lch, $l: 10% * $mul);
   @include lch-scale(#{$name}-dark, $lch, $l: -5% * $mul);
   @include lch-scale(#{$name}-darker, $lch, $l: -10% * $mul);
-  @include lch-from(#{$name}-half, $lch, $a: 50%);
+  @include lch-init(#{$name}-half, $l, $c, $h, $a: calc($a / 2));
 }
 
 @mixin lch-palette-from(
@@ -92,16 +92,6 @@
   }
 }
 
-@mixin media-breakpoints($class, $breakpoints) {
-  @each $bp-key, $bp in $breakpoints {
-    @media (width <= calc($bp - 0.02px)) {
-      .#{$class}-#{$bp-key} {
-        @content;
-      }
-    }
-  }
-}
-
 @mixin print-title($title, $top: true, $bottom: true) {
   $width: 20;
   $title-len: string.length($title);
@@ -133,6 +123,8 @@
 
 @mixin describe($title) {
   @include print-title($title, $bottom: false);
+
   @content;
+
   @include print-title($title, $top: false);
 }

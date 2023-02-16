@@ -3,21 +3,18 @@
 .nav {
   &-list {
     margin: 0;
-
     list-style: none;
   }
 
   &-link {
+    @include palette-replace(--link-clr, --text-clr);
+
     padding: 1rem 0.25rem;
-
-    text-decoration: none;
-
     color: var(--link-clr-darker);
+    text-decoration: none;
 
     &.active {
       color: var(--link-clr-lighter);
     }
-
-    @include palette-replace(--link-clr, --text-clr);
   }
 }

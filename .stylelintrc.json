@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "stylelint-config-standard-scss",
-    "stylelint-order-config-standard"
-  ],
-  "plugins": ["stylelint-order"],
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-clean-order"],
   "rules": {
     "function-disallowed-list": ["rgba", "hsla", "rgb", "hsl"],
     "color-function-notation": "modern",

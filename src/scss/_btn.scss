@@ -3,23 +3,12 @@
 @use "./variables.scss" as *;
 @use "./functions.scss" as *;
 
-@mixin variant($name, $color_var) {
-  &-#{$name} {
-    @extend %bg-#{$name};
-    @include clickable($color_var, "background-color");
-    @include shadowed_focus(#{$color_var}-half);
-  }
-}
-
 .btn {
-  padding: 0.5rem 1rem;
+  @include clickable(--bg-clr, "background-color");
+  @include shadowed_focus(--bg-clr-half);
 
   cursor: pointer;
-
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.75rem;
-
-  @each $name, $color in $theme-colors {
-    @include variant($name, --#{$name});
-  }
 }

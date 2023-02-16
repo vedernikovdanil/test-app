@@ -2,13 +2,27 @@
 @use "./functions.scss" as *;
 @use "./variables.scss" as *;
 
+:root {
+  @each $name, $color in $theme-colors {
+    @include lch-palette-init(--#{$name}, $color...);
+  }
+
+  @extend %bg-light;
+
+  @include lch-palette-from(--light-clr, $primary, $c: 0%);
+  @include lch-palette-init(--link-clr, $l: 55%, $c: 50%, $h: 250deg, $mul: 2);
+}
+
 @include describe("display") {
-  @each $value in (block, flex, grid) {
+  @each $value in (none, block, flex, grid) {
     .d-#{$value} {
       display: $value;
     }
-    .d-inline-#{$value} {
-      display: inline-#{$value};
+
+    @if $value != none {
+      .d-inline-#{$value} {
+        display: inline-#{$value};
+      }
     }
   }
 }
@@ -85,9 +99,7 @@
 
 .collapsing {
   overflow: hidden;
-
   height: 0;
-
   transition: height 0.35s ease;
 }
 
@@ -104,18 +116,19 @@
   }
 }
 
-@each $class, $prop in (text: color, bg: background-color) {
-  @each $color_name, $color in $theme-colors {
-    %#{$class}-#{$color_name} {
-      $text: if(map.get($color, l) <= 65%, --light, --dark);
-      #{$prop}: var(--#{$color_name});
+@each $color_name, $color in $theme-colors {
+  .bg-#{$color_name},
+  %bg-#{$color_name} {
+    $text: if(map.get($color, l) <= 65%, --light, --dark);
 
-      @include palette_replace(--text-clr, $text);
-    }
+    @include palette_replace(--text-clr, $text);
+    @include palette_replace(--bg-clr, --#{$color-name});
+
+    background-color: var(--#{$color_name});
   }
 }
 
-%dark-theme {
-  @extend %bg-dark;
-  @include lch_palette_init(--nav-link-collapse, $l: 75%, $a: 10%, $mul: -2.5);
+@mixin transition-base {
+  transition-timing-function: ease;
+  transition-duration: 350ms;
 }
