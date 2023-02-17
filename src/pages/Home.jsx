@@ -1,17 +1,26 @@
 import Button from "../components/UI/Button";
 
+function Btn({ bg }) {
+  return (
+    <Button bg={bg} className="text-uppercase">
+      {bg}
+    </Button>
+  );
+}
+
 function Home() {
   return (
     <>
       <h1>Hello world</h1>
-      <div className="d-flex flex-column gap-3 w-fit">
-        <Button>Default</Button>
-        <Button.Secondary>Secondary</Button.Secondary>
-        <Button.Success>Success</Button.Success>
-        <Button.Danger>Danger</Button.Danger>
-        <Button.Warning>Warning</Button.Warning>
-        <Button.Dark>Dark</Button.Dark>
-        <Button.Light>Light</Button.Light>
+      <div className="d-flex flex-wrap gap-3">
+        <Btn bg="primary" />
+        <Btn bg="secondary" />
+        <Btn bg="info" />
+        <Btn bg="success" />
+        <Btn bg="danger" />
+        <Btn bg="warning" />
+        <Btn bg="dark" />
+        <Btn bg="light" />
       </div>
       <br />
       <a href="https://github.com">github.com</a>

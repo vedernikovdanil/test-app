@@ -1,31 +1,30 @@
 import React from "react";
-import * as UI from "../UI";
+import { Navbar as UINavbar, Nav } from "../UI";
 
 function Navbar() {
   const [darkmode, setDarkmode] = React.useState(false);
   return (
-    <UI.Navbar breakpoint="md" bg={darkmode ? "dark" : "light"}>
-      <UI.Navbar.Logo to="/">Logo</UI.Navbar.Logo>
-      <UI.Navbar.Collapse>
-        <UI.Nav className="nav-tabs">
-          <UI.Nav.Link to="/posts" disabled>
+    <UINavbar bg={darkmode ? "dark" : "light"}>
+      <UINavbar.Logo to="/">Logo</UINavbar.Logo>
+      <UINavbar.Collapse>
+        <Nav className="nav-tabs" autoWrap={true}>
+          <Nav.Link to="/">Home</Nav.Link>
+          <Nav.Link to="/about">About</Nav.Link>
+          <Nav.Link to="/posts" disabled>
             Posts
-          </UI.Nav.Link>
-          <UI.Nav.Link to="/about">Main</UI.Nav.Link>
-          <UI.Nav.Link to="/about">Link</UI.Nav.Link>
-          <UI.Nav.Link to="/about">About</UI.Nav.Link>
-        </UI.Nav>
-        <UI.Nav className="d-block ml-auto">
-          <div className="d-flex align-items-center">
+          </Nav.Link>
+        </Nav>
+        <Nav className="ml-auto">
+          <Nav.Item className="ml-auto">
             <input
               type="checkbox"
-              className="darkmode-toggler ml-auto"
+              className="darkmode-toggler"
               onChange={(e) => setDarkmode(e.target.checked)}
             />
-          </div>
-        </UI.Nav>
-      </UI.Navbar.Collapse>
-    </UI.Navbar>
+          </Nav.Item>
+        </Nav>
+      </UINavbar.Collapse>
+    </UINavbar>
   );
 }
 

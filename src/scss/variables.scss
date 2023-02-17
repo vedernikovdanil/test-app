@@ -1,4 +1,3 @@
-@use "sass:color";
 @use "sass:map";
 @use "./functions.scss" as *;
 
@@ -10,11 +9,12 @@ $primary: lch-create(
 $theme-colors: (
   primary: $primary,
   secondary: lch-from($primary, $c: 0%),
+  info: lch-from($primary, $h: 200deg),
   success: lch-from($primary, $h: 140deg),
   danger: lch-from($primary, $h: 30deg),
   warning: lch-from($primary, $h: 85deg, $l: 85%),
-  dark: lch-create(25%, $mul: -2),
   light: lch-create(100%, $mul: 1),
+  dark: lch-create(25%, $mul: -1),
 );
 $spacers: (
   auto: auto,

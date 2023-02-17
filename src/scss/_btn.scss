@@ -1,14 +1,13 @@
-@use "sass:color";
 @use "./utils.scss" as *;
 @use "./variables.scss" as *;
 @use "./functions.scss" as *;
 
 .btn {
   @include clickable(--bg-clr, "background-color");
-  @include shadowed_focus(--bg-clr-half);
+  @include shadowed-focus(--bg-clr-half);
 
   cursor: pointer;
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: var(--border-radius);
 }

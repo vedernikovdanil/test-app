@@ -3,7 +3,6 @@
 @forward "./_nav.scss";
 @forward "./_navbar.scss";
 
-@use "sass:list";
 @use "./functions.scss" as *;
 @use "./variables.scss" as *;
 
@@ -19,7 +18,6 @@ body {
 * {
   box-sizing: border-box;
   padding: 0;
-  color: var(--text-clr);
 
   &[aria-disabled="true"] {
     cursor: not-allowed;
@@ -30,12 +28,6 @@ body {
       pointer-events: none;
     }
   }
-}
-
-a {
-  color: var(--link-clr);
-
-  // @include clickable(--link-clr);
 }
 
 .darkmode-toggler {
@@ -50,4 +42,4 @@ a {
   }
 }
 
-@debug "Compiled successfully";
+@debug "styles compiled successfully";

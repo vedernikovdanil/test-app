@@ -3,6 +3,8 @@
 @use "./variables.scss" as *;
 
 :root {
+  --border-radius: 0.5rem;
+
   @each $name, $color in $theme-colors {
     @include lch-palette-init(--#{$name}, $color...);
   }
@@ -117,6 +119,12 @@
   }
 }
 
+.text {
+  &-uppercase::first-letter {
+    text-transform: capitalize;
+  }
+}
+
 .container {
   margin: auto;
   padding: 0 3rem;
@@ -138,7 +146,8 @@
     @include palette_replace(--text-clr, $text);
     @include palette_replace(--bg-clr, --#{$color-name});
 
-    background-color: var(--#{$color_name});
+    color: var(--text-clr);
+    background-color: var(--bg-clr);
   }
 }
 
