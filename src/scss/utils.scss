@@ -9,14 +9,13 @@
 
   @extend %bg-light;
 
-  @include lch-palette-from(--light-clr, $primary, $c: 0%);
   @include lch-palette-init(--link-clr, $l: 55%, $c: 50%, $h: 250deg, $mul: 2);
 }
 
 @mixin set-properties($property, $values) {
   @each $value in $values {
     &-#{$value} {
-      #{$property}: $value;
+      #{$property}: $value !important;
     }
   }
 }
@@ -24,12 +23,12 @@
 @include describe("display") {
   @each $value in (none, block, flex, grid) {
     .d-#{$value} {
-      display: $value;
+      display: $value !important;
     }
 
     @if $value != none {
       .d-inline-#{$value} {
-        display: inline-#{$value};
+        display: inline-#{$value} !important;
       }
     }
   }
@@ -38,32 +37,32 @@
 @include describe("flex") {
   .flex {
     &-column {
-      flex-direction: column;
+      flex-direction: column !important;
     }
 
     &-wrap {
-      flex-wrap: wrap;
+      flex-wrap: wrap !important;
     }
 
     &-column-reverse {
-      flex-direction: column-reverse;
+      flex-direction: column-reverse !important;
     }
 
     &-wrap-reverse {
-      flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse !important;
     }
   }
 
   @each $property in (align-items, justify-content) {
     .#{$property} {
-      $specific-values: if(
+      $values: if(
         $property == justify-content,
         (space-between, space-around, space-evenly),
         (stretch, baseline)
       );
 
       @include set-properties($property, (center, start, end));
-      @include set-properties($property, $specific-values);
+      @include set-properties($property, $values);
     }
   }
 }
@@ -71,7 +70,7 @@
 @include describe("gap") {
   @each $space_class, $space in $spacers {
     .gap-#{$space_class} {
-      gap: $space;
+      gap: $space !important;
     }
   }
 }
@@ -79,12 +78,12 @@
 @include describe("width/height") {
   @each $class, $prop in (w: width, h: height) {
     .#{$class}-fit {
-      #{$prop}: fit-content;
+      #{$prop}: fit-content !important;
     }
 
     @each $space_class, $space in $percents {
       .#{$class}-#{$space_class} {
-        #{$prop}: $space;
+        #{$prop}: $space !important;
       }
     }
   }
@@ -95,22 +94,22 @@
     @each $class, $prop in (m: margin, p: padding) {
       .#{$class} {
         &-#{$space_class} {
-          #{$prop}: $space;
+          #{$prop}: $space !important;
         }
 
         &x-#{$space_class} {
-          #{$prop}-left: $space;
-          #{$prop}-right: $space;
+          #{$prop}-left: $space !important;
+          #{$prop}-right: $space !important;
         }
 
         &y-#{$space_class} {
-          #{$prop}-top: $space;
-          #{$prop}-bottom: $space;
+          #{$prop}-top: $space !important;
+          #{$prop}-bottom: $space !important;
         }
 
         @each $side_class, $side in (l: left, r: right, t: top, b: bottom) {
           &#{$side_class}-#{$space_class} {
-            #{$prop}-#{$side}: $space;
+            #{$prop}-#{$side}: $space !important;
           }
         }
       }
@@ -118,17 +117,11 @@
   }
 }
 
-.collapsing {
-  overflow: hidden;
-  height: 0;
-  transition: height 0.35s ease;
-}
-
 .container {
   margin: auto;
   padding: 0 3rem;
 
-  @media (width <= 565px) {
+  @media ($media-breakpoint) {
     padding: 0 1rem;
   }
 
@@ -152,4 +145,20 @@
 @mixin transition-base {
   transition-timing-function: ease;
   transition-duration: 350ms;
+}
+
+%emoji {
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+
+  &::before {
+    cursor: pointer;
+    content: var(--emoji, "😀");
+
+    display: block;
+
+    font-size: 2rem;
+    line-height: 1;
+  }
 }

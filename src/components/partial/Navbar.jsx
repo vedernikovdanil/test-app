@@ -7,7 +7,7 @@ function Navbar() {
     <UI.Navbar breakpoint="md" bg={darkmode ? "dark" : "light"}>
       <UI.Navbar.Logo to="/">Logo</UI.Navbar.Logo>
       <UI.Navbar.Collapse>
-        <UI.Nav>
+        <UI.Nav className="nav-tabs">
           <UI.Nav.Link to="/posts" disabled>
             Posts
           </UI.Nav.Link>
@@ -15,13 +15,15 @@ function Navbar() {
           <UI.Nav.Link to="/about">Link</UI.Nav.Link>
           <UI.Nav.Link to="/about">About</UI.Nav.Link>
         </UI.Nav>
-        <div className="d-flex justify-content-end gap-3">
-          <input
-            className="darkmode-toggler"
-            type="checkbox"
-            onChange={(e) => setDarkmode(e.target.checked)}
-          />
-        </div>
+        <UI.Nav className="d-block ml-auto">
+          <div className="d-flex align-items-center">
+            <input
+              type="checkbox"
+              className="darkmode-toggler ml-auto"
+              onChange={(e) => setDarkmode(e.target.checked)}
+            />
+          </div>
+        </UI.Nav>
       </UI.Navbar.Collapse>
     </UI.Navbar>
   );

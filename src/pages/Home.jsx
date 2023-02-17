@@ -10,8 +10,8 @@ function Home() {
         <Button.Success>Success</Button.Success>
         <Button.Danger>Danger</Button.Danger>
         <Button.Warning>Warning</Button.Warning>
-        <Button.Dark>Warning</Button.Dark>
-        <Button.Light>Warning</Button.Light>
+        <Button.Dark>Dark</Button.Dark>
+        <Button.Light>Light</Button.Light>
       </div>
       <br />
       <a href="https://github.com">github.com</a>
