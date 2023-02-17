@@ -39,7 +39,7 @@
       mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='black' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>");
     }
 
-    @media ($mdeia-breakpoint) {
+    @media ($media-breakpoint) {
       display: block;
     }
   }
@@ -48,10 +48,10 @@
     display: flex;
     flex-basis: auto;
     flex-grow: 1;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
 
-    @media ($mdeia-breakpoint) {
+    @media ($media-breakpoint) {
       @include transition-base;
 
       overflow: hidden;
@@ -72,6 +72,10 @@
 
         background-color: var(--light-clr);
       }
+
+      > * {
+        padding: 1rem 0;
+      }
     }
   }
 
@@ -81,7 +85,7 @@
     align-items: baseline;
     justify-content: space-between;
 
-    @media ($mdeia-breakpoint) {
+    @media ($media-breakpoint) {
       align-items: center;
     }
   }
@@ -89,9 +93,8 @@
   .nav-list {
     display: flex;
     gap: 1rem;
-    padding: 1rem 0;
 
-    @media ($mdeia-breakpoint) {
+    @media ($media-breakpoint) {
       flex-direction: column;
 
       .nav-link {
@@ -107,7 +110,7 @@
     }
   }
 
-  @media ($mdeia-breakpoint) {
+  @media ($media-breakpoint) {
     &-toggler:checked + &-collapse {
       max-height: var(--height, max-content);
     }

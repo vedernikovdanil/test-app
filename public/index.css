@@ -1,3 +1,4 @@
+@charset "UTF-8";
 :root {
   /* --primary */
   --primary: rgba(31, 141, 255, 1);
@@ -63,8 +64,7 @@
   --link-clr-darker: rgba(0, 57, 125, 1);
   --link-clr-half: rgba(0, 114, 219, 0.5);
 }
-
-@supports (color: color(display-p3 0 0 0)) {
+@supports (color: color(display-p3 0 0 0)){
 :root {
   --primary: color(display-p3 0.26853 0.54582 0.98991 / 100%);
   --primary-light: color(display-p3 0.33703 0.61043 1.00000 / 100%);
@@ -174,6 +174,41 @@
 }
 .flex-wrap-reverse {
   flex-wrap: wrap-reverse;
+}
+
+.align-items-center {
+  align-items: center;
+}
+.align-items-start {
+  align-items: start;
+}
+.align-items-end {
+  align-items: end;
+}
+.align-items-stretch {
+  align-items: stretch;
+}
+.align-items-baseline {
+  align-items: baseline;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-start {
+  justify-content: start;
+}
+.justify-content-end {
+  justify-content: end;
+}
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.justify-content-space-around {
+  justify-content: space-around;
+}
+.justify-content-space-evenly {
+  justify-content: space-evenly;
 }
 
 /*                        */
@@ -813,7 +848,7 @@
   display: flex;
   flex-basis: auto;
   flex-grow: 1;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
 }
 .navbar .container {
@@ -825,7 +860,6 @@
 .navbar .nav-list {
   display: flex;
   gap: 1rem;
-  padding: 1rem 0;
 }
 
 /* index.scss */
@@ -854,7 +888,23 @@ a {
   color: var(--link-clr);
 }
 
-@media (max-width: 768px) {
+.darkmode-toggler {
+  margin: 0;
+  appearance: none;
+}
+.darkmode-toggler::before {
+  cursor: pointer;
+  content: "🌞";
+  display: block;
+  padding: 0 10px;
+  font-size: 2rem;
+  line-height: 1;
+  text-shadow: 0 0 10px var(--secondary);
+}
+.darkmode-toggler:checked::before {
+  content: "🌚";
+}
+@media (max-width: 768px){
   .navbar-toggler {
     display: block;
   }
@@ -873,6 +923,9 @@ a {
     width: 100%;
     height: 2px;
     background-color: var(--light-clr);
+  }
+  .navbar-collapse > * {
+    padding: 1rem 0;
   }
   .navbar .container {
     align-items: center;
@@ -893,14 +946,12 @@ a {
     max-height: var(--height, max-content);
   }
 }
-
-@media (max-width: 565px) {
+@media (max-width: 565px){
   .container {
     padding: 0 1rem;
   }
 }
-
-@media (min-width: 1200px) {
+@media (min-width: 1200px){
   .container {
     max-width: 1200px;
   }

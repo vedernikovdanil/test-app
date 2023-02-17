@@ -13,6 +13,14 @@
   @include lch-palette-init(--link-clr, $l: 55%, $c: 50%, $h: 250deg, $mul: 2);
 }
 
+@mixin set-properties($property, $values) {
+  @each $value in $values {
+    &-#{$value} {
+      #{$property}: $value;
+    }
+  }
+}
+
 @include describe("display") {
   @each $value in (none, block, flex, grid) {
     .d-#{$value} {
@@ -43,6 +51,19 @@
 
     &-wrap-reverse {
       flex-wrap: wrap-reverse;
+    }
+  }
+
+  @each $property in (align-items, justify-content) {
+    .#{$property} {
+      $specific-values: if(
+        $property == justify-content,
+        (space-between, space-around, space-evenly),
+        (stretch, baseline)
+      );
+
+      @include set-properties($property, (center, start, end));
+      @include set-properties($property, $specific-values);
     }
   }
 }

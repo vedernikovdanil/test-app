@@ -38,4 +38,26 @@ a {
   // @include clickable(--link-clr);
 }
 
+.darkmode-toggler {
+  margin: 0;
+  appearance: none;
+
+  &::before {
+    cursor: pointer;
+    content: "🌞";
+
+    display: block;
+
+    padding: 0 10px;
+
+    font-size: 2rem;
+    line-height: 1;
+    text-shadow: 0 0 10px var(--secondary);
+  }
+
+  &:checked::before {
+    content: "🌚";
+  }
+}
+
 @debug "Compiled successfully";

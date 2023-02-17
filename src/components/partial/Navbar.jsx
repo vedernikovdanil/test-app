@@ -4,7 +4,7 @@ import * as UI from "../UI";
 function Navbar() {
   const [darkmode, setDarkmode] = React.useState(false);
   return (
-    <UI.Navbar breakpoint="md" variant={darkmode ? "dark" : "light"}>
+    <UI.Navbar breakpoint="md" bg={darkmode ? "dark" : "light"}>
       <UI.Navbar.Logo to="/">Logo</UI.Navbar.Logo>
       <UI.Navbar.Collapse>
         <UI.Nav>
@@ -15,13 +15,13 @@ function Navbar() {
           <UI.Nav.Link to="/about">Link</UI.Nav.Link>
           <UI.Nav.Link to="/about">About</UI.Nav.Link>
         </UI.Nav>
-        <UI.Nav>
+        <div className="d-flex justify-content-end gap-3">
           <input
+            className="darkmode-toggler"
             type="checkbox"
-            value={darkmode}
             onChange={(e) => setDarkmode(e.target.checked)}
           />
-        </UI.Nav>
+        </div>
       </UI.Navbar.Collapse>
     </UI.Navbar>
   );

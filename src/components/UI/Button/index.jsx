@@ -1,9 +1,9 @@
 /**
  * @param {Object} props
- * @param {"light" | "dark" | "primary" | "secondary" | "success" | "danger" | "warning"} props.variant
+ * @param {"light" | "dark" | "primary" | "secondary" | "success" | "danger" | "warning"} props.bg
  */
-function Button({ children, variant = "primary", className, ...props }) {
-  className = [`btn bg-${variant}`, className].join(" ");
+function Button({ children, bg = "primary", className, ...props }) {
+  className = [`btn bg-${bg}`, className].join(" ");
   return (
     <button className={className} {...props}>
       {children}
@@ -11,9 +11,9 @@ function Button({ children, variant = "primary", className, ...props }) {
   );
 }
 
-function createButton(variant) {
+function createButton(bg) {
   return function (props) {
-    return Button({ ...props, variant });
+    return Button({ ...props, bg });
   };
 }
 
