@@ -64,6 +64,22 @@
   --link-clr-dark: rgba(0, 85, 171, 1);
   --link-clr-darker: rgba(0, 57, 125, 1);
   --link-clr-half: rgba(0, 114, 219, 0.5);
+  /* --text-clr -> --dark */
+  --text-clr: var(--dark);
+  --text-clr-light: var(--dark-light);
+  --text-clr-lighter: var(--dark-lighter);
+  --text-clr-dark: var(--dark-dark);
+  --text-clr-darker: var(--dark-darker);
+  --text-clr-half: var(--dark-half);
+  /* --bg-clr -> --light */
+  --bg-clr: var(--light);
+  --bg-clr-light: var(--light-light);
+  --bg-clr-lighter: var(--light-lighter);
+  --bg-clr-dark: var(--light-dark);
+  --bg-clr-darker: var(--light-darker);
+  --bg-clr-half: var(--light-half);
+  color: var(--text-clr);
+  background-color: var(--bg-clr);
 }
 @supports (color: color(display-p3 0 0 0)){
 :root {
@@ -664,12 +680,14 @@
 }
 
 .bg-primary {
+  /* --text-clr -> --light */
   --text-clr: var(--light);
   --text-clr-light: var(--light-light);
   --text-clr-lighter: var(--light-lighter);
   --text-clr-dark: var(--light-dark);
   --text-clr-darker: var(--light-darker);
   --text-clr-half: var(--light-half);
+  /* --bg-clr -> --primary */
   --bg-clr: var(--primary);
   --bg-clr-light: var(--primary-light);
   --bg-clr-lighter: var(--primary-lighter);
@@ -681,12 +699,14 @@
 }
 
 .bg-secondary {
+  /* --text-clr -> --light */
   --text-clr: var(--light);
   --text-clr-light: var(--light-light);
   --text-clr-lighter: var(--light-lighter);
   --text-clr-dark: var(--light-dark);
   --text-clr-darker: var(--light-darker);
   --text-clr-half: var(--light-half);
+  /* --bg-clr -> --secondary */
   --bg-clr: var(--secondary);
   --bg-clr-light: var(--secondary-light);
   --bg-clr-lighter: var(--secondary-lighter);
@@ -698,12 +718,14 @@
 }
 
 .bg-info {
+  /* --text-clr -> --light */
   --text-clr: var(--light);
   --text-clr-light: var(--light-light);
   --text-clr-lighter: var(--light-lighter);
   --text-clr-dark: var(--light-dark);
   --text-clr-darker: var(--light-darker);
   --text-clr-half: var(--light-half);
+  /* --bg-clr -> --info */
   --bg-clr: var(--info);
   --bg-clr-light: var(--info-light);
   --bg-clr-lighter: var(--info-lighter);
@@ -715,12 +737,14 @@
 }
 
 .bg-success {
+  /* --text-clr -> --light */
   --text-clr: var(--light);
   --text-clr-light: var(--light-light);
   --text-clr-lighter: var(--light-lighter);
   --text-clr-dark: var(--light-dark);
   --text-clr-darker: var(--light-darker);
   --text-clr-half: var(--light-half);
+  /* --bg-clr -> --success */
   --bg-clr: var(--success);
   --bg-clr-light: var(--success-light);
   --bg-clr-lighter: var(--success-lighter);
@@ -732,12 +756,14 @@
 }
 
 .bg-danger {
+  /* --text-clr -> --light */
   --text-clr: var(--light);
   --text-clr-light: var(--light-light);
   --text-clr-lighter: var(--light-lighter);
   --text-clr-dark: var(--light-dark);
   --text-clr-darker: var(--light-darker);
   --text-clr-half: var(--light-half);
+  /* --bg-clr -> --danger */
   --bg-clr: var(--danger);
   --bg-clr-light: var(--danger-light);
   --bg-clr-lighter: var(--danger-lighter);
@@ -749,12 +775,14 @@
 }
 
 .bg-warning {
+  /* --text-clr -> --dark */
   --text-clr: var(--dark);
   --text-clr-light: var(--dark-light);
   --text-clr-lighter: var(--dark-lighter);
   --text-clr-dark: var(--dark-dark);
   --text-clr-darker: var(--dark-darker);
   --text-clr-half: var(--dark-half);
+  /* --bg-clr -> --warning */
   --bg-clr: var(--warning);
   --bg-clr-light: var(--warning-light);
   --bg-clr-lighter: var(--warning-lighter);
@@ -765,14 +793,15 @@
   background-color: var(--bg-clr);
 }
 
-.bg-light,
-:root {
+.bg-light {
+  /* --text-clr -> --dark */
   --text-clr: var(--dark);
   --text-clr-light: var(--dark-light);
   --text-clr-lighter: var(--dark-lighter);
   --text-clr-dark: var(--dark-dark);
   --text-clr-darker: var(--dark-darker);
   --text-clr-half: var(--dark-half);
+  /* --bg-clr -> --light */
   --bg-clr: var(--light);
   --bg-clr-light: var(--light-light);
   --bg-clr-lighter: var(--light-lighter);
@@ -784,12 +813,14 @@
 }
 
 .bg-dark {
+  /* --text-clr -> --light */
   --text-clr: var(--light);
   --text-clr-light: var(--light-light);
   --text-clr-lighter: var(--light-lighter);
   --text-clr-dark: var(--light-dark);
   --text-clr-darker: var(--light-darker);
   --text-clr-half: var(--light-half);
+  /* --bg-clr -> --dark */
   --bg-clr: var(--dark);
   --bg-clr-light: var(--dark-light);
   --bg-clr-lighter: var(--dark-lighter);
@@ -798,6 +829,11 @@
   --bg-clr-half: var(--dark-half);
   color: var(--text-clr);
   background-color: var(--bg-clr);
+}
+
+.navbar-collapse {
+  transition-timing-function: ease;
+  transition-duration: 350ms;
 }
 
 .darkmode-toggler {
@@ -842,15 +878,14 @@
   border-radius: var(--border-radius);
 }
 .nav-link {
-  display: inline-block;
+  display: block;
   padding: 0.5rem;
-  color: var(--text-clr-darker);
+  color: var(--text-clr);
   -webkit-text-decoration: none;
   text-decoration: none;
   border-radius: var(--border-radius);
 }
 .nav-link.active {
-  color: var(--text-clr-lighter);
   background-color: var(--bg-clr-dark);
 }
 .nav-tabs .nav-link.active {
@@ -903,15 +938,13 @@
   flex-basis: auto;
   flex-grow: 1;
   align-items: center;
+  transition-property: max-height;
 }
 .navbar .container {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   justify-content: space-between;
-}
-.navbar .nav-link {
-  display: block;
 }
 
 /* index.scss */
@@ -928,18 +961,24 @@ body {
 *[aria-disabled=true] {
   cursor: not-allowed;
   color: var(--text-clr-half);
-  -webkit-text-decoration: line-through;
-  text-decoration: line-through;
 }
 *[aria-disabled=true]:active {
   pointer-events: none;
+}
+
+a {
+  color: var(--link-clr);
+}
+a:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .darkmode-toggler {
   --emoji: "🌞";
   appearance: none;
 }
-.darkmode-toggler:checked::before {
+.darkmode-toggler:checked {
   --emoji: "🌚";
 }
 @media (max-width: 768px){
@@ -950,13 +989,10 @@ body {
     display: block;
   }
   .navbar-collapse {
-    transition-timing-function: ease;
-    transition-duration: 350ms;
     overflow: hidden;
     display: block;
     flex-basis: 100%;
     max-height: 0;
-    transition-property: max-height;
   }
   .navbar-collapse::before {
     content: "";

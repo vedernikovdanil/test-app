@@ -66,6 +66,7 @@
 }
 
 @mixin palette-replace($from, $to) {
+  /* #{$from} -> #{$to} */
   #{$from}: var($to);
   #{$from}-light: var(#{$to}-light);
   #{$from}-lighter: var(#{$to}-lighter);
@@ -127,4 +128,12 @@
   @content;
 
   @include print-title($title, $top: false);
+}
+
+@mixin set-properties($property, $values) {
+  @each $value in $values {
+    &-#{$value} {
+      #{$property}: $value !important;
+    }
+  }
 }

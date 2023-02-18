@@ -2,6 +2,16 @@
 @use "./functions.scss" as *;
 @use "./variables.scss" as *;
 
+@mixin color-scheme($color-name, $color: map.get($theme-colors, $color-name)) {
+  $text: if(map.get($color, l) <= 65%, --light, --dark);
+
+  @include palette_replace(--text-clr, $text);
+  @include palette_replace(--bg-clr, --#{$color-name});
+
+  color: var(--text-clr);
+  background-color: var(--bg-clr);
+}
+
 :root {
   --border-radius: 0.5rem;
 
@@ -9,17 +19,9 @@
     @include lch-palette-init(--#{$name}, $color...);
   }
 
-  @extend %bg-light;
-
   @include lch-palette-init(--link-clr, $l: 55%, $c: 50%, $h: 250deg, $mul: 2);
-}
 
-@mixin set-properties($property, $values) {
-  @each $value in $values {
-    &-#{$value} {
-      #{$property}: $value !important;
-    }
-  }
+  @include color-scheme(light);
 }
 
 @include describe("display") {
@@ -139,19 +141,12 @@
 }
 
 @each $color_name, $color in $theme-colors {
-  .bg-#{$color_name},
-  %bg-#{$color_name} {
-    $text: if(map.get($color, l) <= 65%, --light, --dark);
-
-    @include palette_replace(--text-clr, $text);
-    @include palette_replace(--bg-clr, --#{$color-name});
-
-    color: var(--text-clr);
-    background-color: var(--bg-clr);
+  .bg-#{$color_name} {
+    @include color-scheme($color-name, $color);
   }
 }
 
-@mixin transition-base {
+%transition-base {
   transition-timing-function: ease;
   transition-duration: 350ms;
 }

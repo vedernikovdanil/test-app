@@ -2,9 +2,8 @@ import React from "react";
 import { Navbar as UINavbar, Nav } from "../UI";
 
 function Navbar() {
-  const [darkmode, setDarkmode] = React.useState(false);
   return (
-    <UINavbar bg={darkmode ? "dark" : "light"}>
+    <UINavbar>
       <UINavbar.Logo to="/">Logo</UINavbar.Logo>
       <UINavbar.Collapse>
         <Nav className="nav-tabs" autoWrap={true}>
@@ -16,11 +15,7 @@ function Navbar() {
         </Nav>
         <Nav className="ml-auto">
           <Nav.Item className="ml-auto">
-            <input
-              type="checkbox"
-              className="darkmode-toggler"
-              onChange={(e) => setDarkmode(e.target.checked)}
-            />
+            <UINavbar.DarkmodeToggler />
           </Nav.Item>
         </Nav>
       </UINavbar.Collapse>

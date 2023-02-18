@@ -1,5 +1,6 @@
 import Logo from "./Logo";
 import Collapse from "./Collapse";
+import DarkmodeToggler from "./DarkmodeToggler";
 
 /**
  * @param {Object} props
@@ -17,4 +18,5 @@ function Navbar({ children, bg, className, ...props }) {
 export default Object.assign(Navbar, {
   Logo,
   Collapse,
+  DarkmodeToggler,
 });

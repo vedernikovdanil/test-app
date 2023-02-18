@@ -45,21 +45,20 @@
   }
 
   &-collapse {
+    @extend %transition-base;
+
     display: flex;
     flex-basis: auto;
     flex-grow: 1;
     align-items: center;
 
-    @media ($media-breakpoint) {
-      @include transition-base;
+    transition-property: max-height;
 
+    @media ($media-breakpoint) {
       overflow: hidden;
       display: block;
       flex-basis: 100%;
-
       max-height: 0;
-
-      transition-property: max-height;
 
       &::before {
         content: "";
@@ -92,10 +91,6 @@
       padding: 1rem 0;
       background-color: inherit !important;
     }
-  }
-
-  .nav-link {
-    display: block;
   }
 
   @media ($media-breakpoint) {

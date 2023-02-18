@@ -18,17 +18,16 @@
   }
 
   &-link {
-    display: inline-block;
+    display: block;
 
     padding: 0.5rem;
 
-    color: var(--text-clr-darker);
+    color: var(--text-clr);
     text-decoration: none;
 
     border-radius: var(--border-radius);
 
     &.active {
-      color: var(--text-clr-lighter);
       background-color: var(--bg-clr-dark);
 
       @at-root .nav-tabs & {
