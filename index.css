@@ -64,22 +64,6 @@
   --link-clr-dark: rgba(0, 85, 171, 1);
   --link-clr-darker: rgba(0, 57, 125, 1);
   --link-clr-half: rgba(0, 114, 219, 0.5);
-  /* --text-clr -> --dark */
-  --text-clr: var(--dark);
-  --text-clr-light: var(--dark-light);
-  --text-clr-lighter: var(--dark-lighter);
-  --text-clr-dark: var(--dark-dark);
-  --text-clr-darker: var(--dark-darker);
-  --text-clr-half: var(--dark-half);
-  /* --bg-clr -> --light */
-  --bg-clr: var(--light);
-  --bg-clr-light: var(--light-light);
-  --bg-clr-lighter: var(--light-lighter);
-  --bg-clr-dark: var(--light-dark);
-  --bg-clr-darker: var(--light-darker);
-  --bg-clr-half: var(--light-half);
-  color: var(--text-clr);
-  background-color: var(--bg-clr);
 }
 @supports (color: color(display-p3 0 0 0)){
 :root {
@@ -793,7 +777,8 @@
   background-color: var(--bg-clr);
 }
 
-.bg-light {
+.bg-light,
+:root {
   /* --text-clr -> --dark */
   --text-clr: var(--dark);
   --text-clr-light: var(--dark-light);
@@ -831,6 +816,13 @@
   background-color: var(--bg-clr);
 }
 
+.btn:hover {
+  background-color: var(--bg-clr-light);
+}
+.btn:active {
+  background-color: var(--bg-clr-dark);
+}
+
 .navbar-collapse {
   transition-timing-function: ease;
   transition-duration: 350ms;
@@ -855,12 +847,6 @@
   padding: 0.5rem 1rem;
   border: none;
   border-radius: var(--border-radius);
-}
-.btn:hover {
-  background-color: var(--bg-clr-light);
-}
-.btn:active {
-  background-color: var(--bg-clr-dark);
 }
 .btn:focus {
   box-shadow: 0 0 0 5px var(--bg-clr-half);
@@ -917,7 +903,6 @@
   display: none;
   padding: 0.25rem 0.75rem;
   appearance: none;
-  background: transparent;
   border: 1px solid var(--secondary);
   border-radius: var(--border-radius);
 }
