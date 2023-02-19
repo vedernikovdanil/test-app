@@ -1,16 +1,8 @@
-import Item from "./Item";
-
-function List({ children, className, autoWrap = false, ...props }) {
+function List({ children, className, ...props }) {
   if (!Array.isArray(children)) {
     children = [children];
   }
-  props.className = ["nav-list", className].join(" ");
-
-  if (autoWrap) {
-    children = [...children].map((item, index) => (
-      <Item key={index}>{item}</Item>
-    ));
-  }
+  props.className = ["nav-list", className].filter(Boolean).join(" ");
 
   return <ul {...props}>{children}</ul>;
 }

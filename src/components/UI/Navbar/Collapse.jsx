@@ -20,7 +20,8 @@ function Collapse({ children, className, ...props }) {
     collapseRef.current.style.setProperty("--height", `${height}px`);
   }
 
-  props.className = ["navbar-collapse", className].join(" ");
+  props.className = ["navbar-collapse", className].filter(Boolean).join(" ");
+
   return (
     <>
       <input

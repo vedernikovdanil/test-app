@@ -83,16 +83,6 @@
   }
 }
 
-@mixin clickable($color-var, $property: "color") {
-  &:hover {
-    #{$property}: var(#{$color_var}-light);
-  }
-
-  &:active {
-    #{$property}: var(#{$color_var}-dark);
-  }
-}
-
 @mixin print-title($title, $top: true, $bottom: true) {
   $width: 20;
   $title-len: string.length($title);
@@ -128,12 +118,4 @@
   @content;
 
   @include print-title($title, $top: false);
-}
-
-@mixin set-properties($property, $values) {
-  @each $value in $values {
-    &-#{$value} {
-      #{$property}: $value !important;
-    }
-  }
 }

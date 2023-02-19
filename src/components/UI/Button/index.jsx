@@ -3,7 +3,8 @@
  * @param {"light" | "dark" | "primary" | "secondary" | "info" | "success" | "danger" | "warning"} props.bg
  */
 function Button({ children, bg = "primary", className, ...props }) {
-  className = [`btn bg-${bg}`, className].join(" ");
+  className = [`btn bg-${bg}`, className].filter(Boolean).join(" ");
+
   return (
     <button className={className} {...props}>
       {children}

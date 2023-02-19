@@ -12,7 +12,7 @@ function Home() {
   return (
     <>
       <h1>Hello world</h1>
-      <div className="d-flex flex-wrap gap-3">
+      <div className="d-flex flex-wrap gap-3 mb-3">
         <Btn bg="primary" />
         <Btn bg="secondary" />
         <Btn bg="info" />
@@ -22,7 +22,6 @@ function Home() {
         <Btn bg="dark" />
         <Btn bg="light" />
       </div>
-      <br />
       <a href="https://github.com">github.com</a>
     </>
   );

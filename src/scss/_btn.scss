@@ -3,7 +3,8 @@
 @use "./functions.scss" as *;
 
 .btn {
-  @include clickable(--bg-clr, background-color);
+  @extend %clickable;
+
   @include shadowed-focus(--bg-clr-half);
 
   cursor: pointer;

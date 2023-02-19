@@ -6,12 +6,18 @@ function Navbar() {
     <UINavbar>
       <UINavbar.Logo to="/">Logo</UINavbar.Logo>
       <UINavbar.Collapse>
-        <Nav className="nav-tabs" autoWrap={true}>
-          <Nav.Link to="/">Home</Nav.Link>
-          <Nav.Link to="/about">About</Nav.Link>
-          <Nav.Link to="/posts" disabled>
-            Posts
-          </Nav.Link>
+        <Nav className="nav-tabs">
+          <Nav.Item>
+            <Nav.Link to="/">Home</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link to="/about">About</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link to="/posts" disabled>
+              Posts
+            </Nav.Link>
+          </Nav.Item>
         </Nav>
         <Nav className="ml-auto">
           <Nav.Item className="ml-auto">

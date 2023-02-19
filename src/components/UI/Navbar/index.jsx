@@ -7,7 +7,10 @@ import DarkmodeToggler from "./DarkmodeToggler";
  * @param {"light" | "dark" | "primary" | "secondary" | "success" | "danger" | "warning"} props.bg
  */
 function Navbar({ children, bg, className, ...props }) {
-  props.className = ["navbar", bg && `bg-${bg}`, className].join(" ");
+  props.className = ["navbar", bg && `bg-${bg}`, className]
+    .filter(Boolean)
+    .join(" ");
+
   return (
     <nav {...props}>
       <div className="container">{children}</div>
